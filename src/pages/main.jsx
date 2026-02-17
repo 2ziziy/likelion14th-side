@@ -51,9 +51,8 @@ const Title = styled.h1`
   line-height: 130%;
   text-align: center;
 
-  color: #000000; 
-  -webkit-text-stroke: 1px #FFFFFF;
-  text-shadow: 4px 4px 0px #FF6000;
+  color: #000000;
+  text-shadow: 2px 2px 0px #FF6000;
 
   white-space: pre-wrap;
   margin: 0;

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import lionImage from "../assets/playlist.png";
 import lionHead from "../assets/lion.png";
 import { useLocation } from "react-router-dom";
 import Beat from "../assets/beat.jpeg";

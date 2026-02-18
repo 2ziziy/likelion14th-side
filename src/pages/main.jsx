@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import playlistImage from "../assets/playlist.png";
 import headphoneIcon from "../assets/icon_headphone.png";

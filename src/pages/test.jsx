@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import lionHead from "../assets/lion.png";
 import { useNavigate, useLocation } from "react-router-dom";

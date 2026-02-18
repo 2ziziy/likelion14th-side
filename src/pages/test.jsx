@@ -97,8 +97,8 @@ const ProgressBarWrapper = styled.div`
   border-radius: 10px;
   border: 2px solid #ffffff;
   position: relative;
-  margin-top: 50px;
-  margin-bottom: 10px;
+  margin-top: 20px;
+  margin-bottom: 5px;
 `;
 
 const ProgressFill = styled.div`

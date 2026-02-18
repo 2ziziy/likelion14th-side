@@ -73,9 +73,6 @@ const Container = styled.div`
   align-items: center;
 `;
 
-{
-  /* 전체 영역을 감싸는 틀 */
-}
 const ProgressContainer = styled.div`
   width: 339px;
 
@@ -91,9 +88,6 @@ const ProgressContainer = styled.div`
   z-index: 100;
 `;
 
-{
-  /* 흰색 테두리가 있는 긴 막대 */
-}
 const ProgressBarWrapper = styled.div`
   width: 100%;
   height: 10px;
@@ -104,9 +98,6 @@ const ProgressBarWrapper = styled.div`
   margin: 10px 0;
 `;
 
-{
-  /* 주황색으로 꽉 찬 내부 */
-}
 const ProgressFill = styled.div`
   width: 100%;
   height: 100%;
@@ -122,9 +113,6 @@ const LionIcon = styled.img`
   image-rendering: pixelated;
 `;
 
-{
-  /* 아래쪽 시간 표시 */
-}
 const TimeText = styled.div`
   width: 100%;
   display: flex;
@@ -134,9 +122,6 @@ const TimeText = styled.div`
   color: #000;
 `;
 
-{
-  /* 결과 멘트 */
-}
 const ResultTitle = styled.h2`
   font-weight: 400;
   font-size: 30px;
@@ -149,9 +134,6 @@ const ResultTitle = styled.h2`
   white-space: pre-wrap;
 `;
 
-{
-  /* 썸네일 박스 안에 들어있는 이미지 */
-}
 const ThumbnailImage = styled.img`
   width: 250px;
   height: 250px;
@@ -164,9 +146,6 @@ const ThumbnailImage = styled.img`
   margin-bottom: 50px;
 `;
 
-{
-  /* 지원하기 버튼 */
-}
 const ApplyButton = styled.button`
   font-weight: 400;
   font-size: 30px;

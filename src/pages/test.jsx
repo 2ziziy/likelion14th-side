@@ -135,6 +135,10 @@ const Question = styled.div`
   align-items: center;
   justify-content: center;
   gap: 70px;
+
+  @media (max-width: 768px) {
+    gap: 40px;
+  }
 `;
 
 const QuestionTitle = styled.div`

@@ -97,7 +97,7 @@ const ProgressBarWrapper = styled.div`
   border-radius: 10px;
   border: 2px solid #ffffff;
   position: relative;
-  margin-top: 30px;
+  margin-top: 50px;
   margin-bottom: 10px;
 `;
 
@@ -136,7 +136,7 @@ const Question = styled.div`
 
 const QuestionTitle = styled.div`
   font-weight: 400;
-  font-size: 30px;
+  font-size: 22px;
   line-height: 130%;
   text-align: center;
   max-width: 320px;
@@ -172,7 +172,7 @@ const ContentDetail = styled.div`
 
 const ContentText = styled.div`
   font-weight: 400;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 130%;
   text-align: center;
 
@@ -188,7 +188,7 @@ const ButtonRow = styled.div`
 
 const NavBtn = styled.div`
   font-weight: 400;
-  font-size: 30px;
+  font-size: 20px;
   line-height: 130%;
   text-align: center;
 

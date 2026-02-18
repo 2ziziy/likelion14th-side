@@ -94,7 +94,7 @@ const ProgressBarWrapper = styled.div`
   border-radius: 10px;
   border: 2px solid #ffffff;
   position: relative;
-  margin: 10px 0;
+  margin: 30px 0;
 `;
 
 const ProgressFill = styled.div`
@@ -123,7 +123,7 @@ const TimeText = styled.div`
 
 const ResultTitle = styled.h2`
   font-weight: 400;
-  font-size: 30px;
+  font-size: 22px;
   line-height: 130%;
   text-align: center;
 
@@ -147,7 +147,7 @@ const ThumbnailImage = styled.img`
 
 const ApplyButton = styled.button`
   font-weight: 400;
-  font-size: 30px;
+  font-size: 22px;
   line-height: 130%;
   text-align: center;
 

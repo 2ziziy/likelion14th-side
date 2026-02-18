@@ -1,7 +1,70 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import lionHead from "../assets/lion.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+
+const QUESTIONS = [
+  {
+    id: 1,
+    text: "코딩할 때 스타일은?",
+    options: [
+      { value: 1, label: "미리미리 끝낸다." },
+      { value: 2, label: "나눠서 처리한다." },
+      { value: 3, label: "삘 탈 때 몰아서 한다." },
+      { value: 4, label: "마감기한까지 미룬다." },
+    ],
+  },
+  {
+    id: 2,
+    text: "에러가 날 때 반응은?",
+    options: [
+      { value: 1, label: "쉰다." },
+      { value: 2, label: "계속 다시 실행한다." },
+      { value: 3, label: "AI의 도움을 받는다." },
+      { value: 4, label: "접는다." },
+    ],
+  },
+  {
+    id: 3,
+    text: "코딩 하기 전 가장 먼저 하는 행동은?",
+    options: [
+      { value: 1, label: "계획표를 본다." },
+      { value: 2, label: "커피를 내린다." },
+      { value: 3, label: "주변을 청소한다." },
+      { value: 4, label: "조원의 독촉 연락을 받는다." },
+    ],
+  },
+  {
+    id: 4,
+    text: "선호하는 장소는?",
+    options: [
+      { value: 1, label: "조용한 도서관" },
+      { value: 2, label: "편안한 집" },
+      { value: 3, label: "북적북적 카페" },
+      { value: 4, label: "쿵짝쿵짝 클럽" },
+    ],
+  },
+  {
+    id: 5,
+    text: "코딩할 때 가장 싫은 상황은?",
+    options: [
+      { value: 1, label: "알 수 없는 오류" },
+      { value: 2, label: "저장 안 했는데 컴다운됨" },
+      { value: 3, label: "깨져버린 디자인" },
+      { value: 4, label: "깃허브 꼬였을 때" },
+    ],
+  },
+  {
+    id: 6,
+    text: "코딩할 때 꼭 필요한 것은?",
+    options: [
+      { value: 1, label: "잠을 깨워줄 커피" },
+      { value: 2, label: "도움을 요청할 AI" },
+      { value: 3, label: "노래를 틀어줄 이어폰" },
+      { value: 4, label: "미모점검을 위한 거울" },
+    ],
+  },
+];
 
 const Wrapper = styled.div`
   height: 100vh;
@@ -34,7 +97,8 @@ const ProgressBarWrapper = styled.div`
   border-radius: 10px;
   border: 2px solid #ffffff;
   position: relative;
-  margin: 10px 0;
+  margin-top: 30px;
+  margin-bottom: 10px;
 `;
 
 const ProgressFill = styled.div`
@@ -143,25 +207,16 @@ const NavBtn = styled.div`
 
 export default function Test() {
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const [questions, setQuestions] = useState(null);
-  const [index, setIndex] = useState(0);
-  const [answers, setAnswers] = useState([]);
+  const [index, setIndex] = useState(location.state?.index ?? 0);
 
-  useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_BASE_URL}/questions`)
-      .then((r) => r.json())
-      .then((data) => {
-        setQuestions(data);
-        setAnswers(new Array(data.length).fill(null));
-      });
-  }, []);
+  const [answers, setAnswers] = useState(
+    location.state?.fullAnswers ?? new Array(QUESTIONS.length).fill(null),
+  );
 
-  if (!questions) return <div>로딩중...</div>;
+  const q = QUESTIONS[index];
 
-  const q = questions[index];
-
-  /* 선택 */
   const handleSelect = (opt) => {
     const copy = [...answers];
     copy[index] = opt;
@@ -176,27 +231,21 @@ export default function Test() {
     setIndex((i) => i - 1);
   };
 
-  /* 다음 */
-  const handleNext = async () => {
+  const handleNext = () => {
     if (!answers[index]) {
       alert("선택하세요");
       return;
     }
 
-    if (index === questions.length - 1) {
+    if (index === QUESTIONS.length - 1) {
       const answerValues = answers.map((a) => a.value);
-
-      const res = await fetch(`${process.env.REACT_APP_API_BASE_URL}/result`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
+      navigate("/result", {
+        state: {
           answers: answerValues,
-        }),
+          index,
+          fullAnswers: answers,
+        },
       });
-
-      const resultData = await res.json();
-
-      navigate("/result", { state: resultData });
       return;
     }
 

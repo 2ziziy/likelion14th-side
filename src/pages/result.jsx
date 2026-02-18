@@ -1,7 +1,62 @@
-import React from "react";
 import styled from "styled-components";
 import lionImage from "../assets/playlist.png";
 import lionHead from "../assets/lion.png";
+import { useLocation } from "react-router-dom";
+import Beat from "../assets/beat.jpeg";
+import Calm from "../assets/janjan.jpeg";
+import Exciting from "../assets/joy.jpeg";
+import Heavy from "../assets/rock.jpeg";
+import WhiteNoise from "../assets/white.jpeg";
+
+const RESULT_MAP = [
+  {
+    min: 6,
+    max: 9,
+    genre: "백색소음",
+    description:
+      "차분한 집중력이 필요한 당신,\n주변 소음으로\n몰입도를 높여보세요.",
+    playlistUrl:
+      "https://youtube.com/playlist?list=PL6xGPiO7EcprRxxV05iNyEzMeq5AMZThg&si=XDz8CVTv9yJVZNSn",
+    imageUrl: WhiteNoise,
+  },
+  {
+    min: 10,
+    max: 13,
+    genre: "잔잔한",
+    description: "평온한 마음으로\n코드를 한 줄씩 쌓아가는\n스타일이시네요.",
+    playlistUrl:
+      "https://youtube.com/playlist?list=PL6xGPiO7EcppsQh9eVRjfNnZytbYxiQtD&si=YcOMpT81Pal0mgCW",
+    imageUrl: Calm,
+  },
+  {
+    min: 14,
+    max: 17,
+    genre: "비트 있는",
+    description: "적당한 리듬감이 있을 때\n코딩 효율이 극대화되는 타입입니다!",
+    playlistUrl:
+      "https://www.youtube.com/playlist?list=PL6xGPiO7EcpppeALtxBSorHO_ZRFd-2SK",
+    imageUrl: Beat,
+  },
+  {
+    min: 18,
+    max: 21,
+    genre: "신나는",
+    description: "폭발적인 텐션으로\n마감을 향해 질주하는\n당신을 위한 노래!",
+    playlistUrl:
+      "https://www.youtube.com/playlist?list=PL6xGPiO7Ecpo3pYYfehwmkL2euHfbaHjB",
+    imageUrl: Exciting,
+  },
+  {
+    min: 22,
+    max: 24,
+    genre: "헤비메탈",
+    description:
+      "모든 에러를 부숴버릴 듯한\n강력한 에너지가\n필요한 시간입니다.",
+    playlistUrl:
+      "https://www.youtube.com/playlist?list=PL6xGPiO7EcpoM8cC8uyKW852czPiyViX5",
+    imageUrl: Heavy,
+  },
+];
 
 const Wrapper = styled.div`
   width: 100vw;
@@ -59,9 +114,6 @@ const ProgressFill = styled.div`
   border-radius: 10px;
 `;
 
-{
-  /* 오른쪽 끝에 떠 있는 사자 머리 */
-}
 const LionIcon = styled.img`
   width: 40px;
   position: absolute;
@@ -98,28 +150,18 @@ const ResultTitle = styled.h2`
 `;
 
 {
-  /* 썸네일 박스 */
-}
-const ThumbnailBox = styled.div`
-  width: 250px;
-  height: 250px;
-  background: #ffffff;
-  border: 3px solid #000000;
-  border-radius: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px 0;
-  box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.2);
-`;
-
-{
   /* 썸네일 박스 안에 들어있는 이미지 */
 }
 const ThumbnailImage = styled.img`
-  width: 180px;
-  height: 180px;
-  object-fit: contain;
+  width: 250px;
+  height: 250px;
+  border: 2px solid #000000;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 50px;
 `;
 
 {
@@ -146,10 +188,16 @@ const ApplyButton = styled.button`
 `;
 
 function Result() {
-  const LION_APPLY_URL = "멋자 지원 페이지 URL";
+  const location = useLocation();
+  const answers = location.state?.answers || [];
+  const totalScore = answers.reduce((a, b) => a + b, 0);
+
+  const result =
+    RESULT_MAP.find((r) => totalScore >= r.min && totalScore <= r.max) ||
+    RESULT_MAP[0];
 
   const handleApply = () => {
-    window.open(LION_APPLY_URL, "_blank");
+    window.open(result.playlistUrl, "_blank");
   };
 
   return (
@@ -166,15 +214,9 @@ function Result() {
           </TimeText>
         </ProgressContainer>
 
-        <ResultTitle>
-          차분한 집중력이 필요한 당신,{"\n"}
-          주변 소음으로{"\n"}
-          몰입도를 높여 보세요.
-        </ResultTitle>
+        <ResultTitle>{result.description}</ResultTitle>
 
-        <ThumbnailBox>
-          <ThumbnailImage src={lionImage} alt="Result Thumbnail" />
-        </ThumbnailBox>
+        <ThumbnailImage src={result.imageUrl} alt={result.genre} />
 
         <ApplyButton onClick={handleApply}>
           플리 들으면서 멋사 14기{"\n"}

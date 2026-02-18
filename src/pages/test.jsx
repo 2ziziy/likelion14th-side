@@ -73,6 +73,10 @@ const Wrapper = styled.div`
   align-items: center;
   flex-direction: column;
   padding-top: 100px;
+
+  @media (max-width: 768px) {
+    padding-top: 50px;
+  }
 `;
 
 const ProgressContainer = styled.div`
@@ -97,7 +101,6 @@ const ProgressBarWrapper = styled.div`
   border-radius: 10px;
   border: 2px solid #ffffff;
   position: relative;
-  margin-top: 20px;
   margin-bottom: 5px;
 `;
 

@@ -1,6 +1,4 @@
-import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Setting from './setting';
 import Main from './pages/main';
 import Test from './pages/test';
 import Result from './pages/result';

@@ -57,6 +57,10 @@ const RESULT_MAP = [
   },
 ];
 
+const Applylink = {
+  url: "https://forms.gle/EofyS4K7QF9jZ2767",
+};
+
 const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;
@@ -133,16 +137,27 @@ const ResultTitle = styled.h2`
   white-space: pre-wrap;
 `;
 
-const ThumbnailImage = styled.img`
-  width: 250px;
-  height: 250px;
-  border: 2px solid #000000;
-  border-radius: 10px;
+const ThumbnailContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 250px;
+  height: 250px;
+  border-radius: 10px;
+  border: 2px solid #000000;
   margin-top: 30px;
   margin-bottom: 50px;
+  cursor: pointer;
+  overflow: hidden;
+`;
+
+const ThumbnailImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const ApplyButton = styled.button`
@@ -163,6 +178,10 @@ const ApplyButton = styled.button`
   &:hover {
     opacity: 0.8;
   }
+
+  & + & {
+    margin-top: 20px; /* 🔥 버튼 사이 간격 */
+  }
 `;
 
 function Result() {
@@ -175,7 +194,7 @@ function Result() {
     RESULT_MAP[0];
 
   const handleApply = () => {
-    window.open(result.playlistUrl, "_blank");
+    window.open(Applylink.url, "_blank");
   };
 
   return (
@@ -194,8 +213,17 @@ function Result() {
 
         <ResultTitle>{result.description}</ResultTitle>
 
-        <ThumbnailImage src={result.imageUrl} alt={result.genre} />
+        <ThumbnailContainer>
+          <ThumbnailImage
+            src={result.imageUrl}
+            alt={result.genre}
+            onClick={() => window.open(result.playlistUrl, "_blank")}
+          />
+        </ThumbnailContainer>
 
+        <ApplyButton onClick={() => window.open(result.playlistUrl, "_blank")}>
+          플리 들으러 가기 &gt;
+        </ApplyButton>
         <ApplyButton onClick={handleApply}>
           플리 들으면서 멋사 14기{"\n"}
           지원하러 가기 &gt;

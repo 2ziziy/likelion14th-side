@@ -146,7 +146,7 @@ const ThumbnailContainer = styled.div`
   border-radius: 10px;
   border: 2px solid #000000;
   margin-top: 30px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   cursor: pointer;
   overflow: hidden;
 `;

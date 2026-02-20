@@ -288,7 +288,12 @@ export default function Test() {
           ))}
         </QuestionContent>
         <ButtonRow>
-          <NavBtn onClick={handlePrev}>이전</NavBtn>
+          <NavBtn
+            onClick={handlePrev}
+            style={{ visibility: index === 0 ? "hidden" : "visible" }}
+          >
+            이전
+          </NavBtn>
           <NavBtn onClick={handleNext} disabled={!answers[index]}>
             다음
           </NavBtn>
